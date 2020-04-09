@@ -10,7 +10,7 @@ func Int64ToString(v int64) string {
 	s := strconv.FormatInt(v, 10)
 	return s
 }
-func toInt64(v interface{}) (int64, error) {
+func ToInt64(v interface{}) (int64, error) {
 	var r int64
 	r = 0
 	switch reflect.TypeOf(v).Kind() {
