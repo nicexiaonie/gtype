@@ -13,6 +13,9 @@ func Int64ToString(v int64) string {
 func ToInt64(v interface{}) (int64, error) {
 	var r int64
 	r = 0
+	if v == nil {
+		return r, nil
+	}
 	switch reflect.TypeOf(v).Kind() {
 	case reflect.Int64:
 		r = v.(int64)
