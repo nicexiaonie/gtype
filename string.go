@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"io"
+	"reflect"
 	"strconv"
 )
 
@@ -28,4 +29,16 @@ func GetMd5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
 	return hex.EncodeToString(h.Sum(nil))
+}
+func ToString(v interface{}) string {
+	r := ""
+	switch reflect.TypeOf(v).Kind() {
+	case reflect.String:
+		r = v.(string)
+		break
+	case reflect.Int64:
+		r = strconv.FormatInt(v.(int64), 10)
+		break
+	}
+	return r
 }
