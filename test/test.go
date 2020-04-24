@@ -2,18 +2,19 @@ package main
 
 import (
 	"fmt"
+	"github.com/nicexiaonie/gtype"
 )
 
 func main()  {
 
-	a := map[int]string{
-		1:"a",
-		4:"d",
-	}
+	a := make(map[string]interface{})
 
-	if a[10] == ""{
-		fmt.Print(111)
-	}
-fmt.Println(a[10])
+	b :=gtype.ToString(a["a"])
+
+fmt.Println(b)
+
+
+
+
 
 }

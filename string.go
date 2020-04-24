@@ -32,13 +32,15 @@ func GetMd5String(s string) string {
 }
 func ToString(v interface{}) string {
 	r := ""
-	switch reflect.TypeOf(v).Kind() {
-	case reflect.String:
-		r = v.(string)
-		break
-	case reflect.Int64:
-		r = strconv.FormatInt(v.(int64), 10)
-		break
+	if v != nil {
+		switch reflect.TypeOf(v).Kind() {
+		case reflect.String:
+			r = v.(string)
+			break
+		case reflect.Int64:
+			r = strconv.FormatInt(v.(int64), 10)
+			break
+		}
 	}
 	return r
 }
