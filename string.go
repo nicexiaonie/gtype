@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/json"
 	"io"
 	"reflect"
 	"strconv"
@@ -39,6 +40,10 @@ func ToString(v interface{}) string {
 			break
 		case reflect.Int64:
 			r = strconv.FormatInt(v.(int64), 10)
+			break
+		case reflect.Struct:
+			rb,_ := json.Marshal(v)
+			r = string(rb)
 			break
 		}
 	}
