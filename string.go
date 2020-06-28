@@ -45,6 +45,10 @@ func ToString(v interface{}) string {
 			rb,_ := json.Marshal(v)
 			r = string(rb)
 			break
+		case reflect.Map:
+			rb,_ := json.Marshal(v)
+			r = string(rb)
+			break
 		}
 	}
 	return r
