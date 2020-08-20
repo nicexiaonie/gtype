@@ -49,6 +49,9 @@ func ToInt64(v interface{}) int64 {
 func ToInt(v interface{}) int {
 	var r int
 	var err error
+	if v == nil {
+		return 0
+	}
 	switch reflect.TypeOf(v).Kind() {
 	case reflect.String:
 		r, _ = strconv.Atoi(v.(string))
