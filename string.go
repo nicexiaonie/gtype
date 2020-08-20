@@ -45,6 +45,9 @@ func ToString(v interface{}) string {
 			rb,_ := json.Marshal(v)
 			r = string(rb)
 			break
+		case reflect.Int:
+			r = strconv.Itoa(v.(int))
+			break
 		case reflect.Map:
 			rb,_ := json.Marshal(v)
 			r = string(rb)

@@ -5,11 +5,19 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
+	"unsafe"
 )
 
 func Int64ToString(v int64) string {
 	s := strconv.FormatInt(v, 10)
 	return s
+}
+func IntTo64(v int) int64 {
+	return int64(v)
+}
+func Int64ToInt(v int64) int {
+	r := *(*int)(unsafe.Pointer(&v))
+	return r
 }
 func ToInt64(v interface{}) int64 {
 	var r int64
@@ -26,9 +34,29 @@ func ToInt64(v interface{}) int64 {
 		s := v.(string)
 		r, _ = strconv.ParseInt(s, 10, 64)
 		break
+	case reflect.Int:
+		r = int64(v.(int))
+		break
 	default:
 		err = errors.New("not found relation type")
 		return 0
+	}
+	if err != nil {
+		_ = fmt.Errorf(err.Error())
+	}
+	return r
+}
+func ToInt(v interface{}) int {
+	var r int
+	var err error
+	switch reflect.TypeOf(v).Kind() {
+	case reflect.String:
+		r, _ = strconv.Atoi(v.(string))
+		break
+	case reflect.Int64:
+		iv6 := v.(int64)
+		r = *(*int)(unsafe.Pointer(&iv6))
+		break
 	}
 	if err != nil {
 		_ = fmt.Errorf(err.Error())
