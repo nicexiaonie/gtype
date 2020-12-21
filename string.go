@@ -42,16 +42,21 @@ func ToString(v interface{}) string {
 			r = strconv.FormatInt(v.(int64), 10)
 			break
 		case reflect.Struct:
-			rb,_ := json.Marshal(v)
+			rb, _ := json.Marshal(v)
 			r = string(rb)
 			break
 		case reflect.Int:
 			r = strconv.Itoa(v.(int))
 			break
 		case reflect.Map:
-			rb,_ := json.Marshal(v)
+			rb, _ := json.Marshal(v)
 			r = string(rb)
 			break
+		default:
+			jsons, _ := json.Marshal(v)
+			r = string(jsons)
+			break
+
 		}
 	}
 	return r
