@@ -9,6 +9,7 @@ import (
 	"io"
 	"reflect"
 	"strconv"
+	"time"
 )
 
 func StringToInt64(v string) int64 {
@@ -16,7 +17,7 @@ func StringToInt64(v string) int64 {
 	return i
 }
 
-//生成Guid字串
+// 生成Guid字串
 func UniqueId() string {
 	b := make([]byte, 48)
 	if _, err := io.ReadFull(rand.Reader, b); err != nil {
@@ -25,7 +26,7 @@ func UniqueId() string {
 	return GetMd5String(base64.URLEncoding.EncodeToString(b))
 }
 
-//生成32位md5字串
+// 生成32位md5字串
 func GetMd5String(s string) string {
 	h := md5.New()
 	h.Write([]byte(s))
@@ -56,8 +57,21 @@ func ToString(v interface{}) string {
 			jsons, _ := json.Marshal(v)
 			r = string(jsons)
 			break
-
 		}
 	}
 	return r
+}
+
+func MapTimeToStringFormat(v map[string]interface{}, timeformat string) map[string]interface{} {
+	if len(timeformat) < 1 {
+		timeformat = "2006-01-02 15:04:05"
+	}
+	for yk, yv := range v {
+		if v != nil {
+			if reflect.TypeOf(yv).String() == "time.Time" {
+				v[yk] = yv.(time.Time).Format(timeformat)
+			}
+		}
+	}
+	return v
 }

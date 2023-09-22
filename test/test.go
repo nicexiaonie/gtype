@@ -3,18 +3,20 @@ package main
 import (
 	"fmt"
 	"github.com/nicexiaonie/gtype"
+	"time"
 )
 
-func main()  {
+func main() {
 
 	a := make(map[string]interface{})
+	a["a"] = 23
+	a["b"] = time.Now()
+	a["c"] = "adfs"
 
-	b :=gtype.ToString(a["a"])
+	c := gtype.MapTimeToStringFormat(a, "")
 
-fmt.Println(b)
+	b := gtype.ToString(c)
 
-
-
-
+	fmt.Println(b)
 
 }
