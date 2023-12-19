@@ -12,9 +12,11 @@ func Int64ToString(v int64) string {
 	s := strconv.FormatInt(v, 10)
 	return s
 }
+
 func IntTo64(v int) int64 {
 	return int64(v)
 }
+
 func Int64ToInt(v int64) int {
 	r := *(*int)(unsafe.Pointer(&v))
 	return r
@@ -46,6 +48,7 @@ func ToInt64(v interface{}) int64 {
 	}
 	return r
 }
+
 func ToInt(v interface{}) int {
 	var r int
 	var err error
@@ -66,7 +69,17 @@ func ToInt(v interface{}) int {
 	}
 	return r
 }
+
 func Float64ToInt64(v float64) int64 {
 	y := int64(v)
 	return y
+}
+
+func Float64Format(v float64, n int) float64 {
+	f, _ := strconv.ParseFloat(fmt.Sprintf("%."+ToString(n)+"f", v), 64)
+	return float64(f)
+}
+func Float32Format(v float32, n int) float32 {
+	f, _ := strconv.ParseFloat(fmt.Sprintf("%."+ToString(n)+"f", v), 32)
+	return float32(f)
 }
