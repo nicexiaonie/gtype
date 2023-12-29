@@ -3,6 +3,7 @@ package gtype
 import (
 	"errors"
 	"fmt"
+	"math"
 	"reflect"
 	"strconv"
 	"unsafe"
@@ -76,10 +77,14 @@ func Float64ToInt64(v float64) int64 {
 }
 
 func Float64Format(v float64, n int) float64 {
-	f, _ := strconv.ParseFloat(fmt.Sprintf("%."+ToString(n)+"f", v), 64)
-	return float64(f)
+	x := math.Pow(10, float64(n))
+	z := int64(v * x)
+	v = float64(z) / x
+	return v
 }
 func Float32Format(v float32, n int) float32 {
-	f, _ := strconv.ParseFloat(fmt.Sprintf("%."+ToString(n)+"f", v), 32)
-	return float32(f)
+	x := float32(math.Pow(10, float64(n)))
+	z := int32(v * x)
+	v = float32(z) / x
+	return v
 }

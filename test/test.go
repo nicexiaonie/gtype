@@ -7,10 +7,8 @@ import (
 
 func main() {
 
-	var a float32
+	var aa float64
+	aa = 345.435
 
-	a = 78.34543
-	fmt.Println(a)
-	fmt.Println(gtype.Float32Format(a, 2))
-
+	fmt.Println(gtype.Float64Format(aa, 1))
 }
