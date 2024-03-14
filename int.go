@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"math/rand"
 	"reflect"
 	"strconv"
 	"unsafe"
@@ -22,6 +23,7 @@ func Int64ToInt(v int64) int {
 	r := *(*int)(unsafe.Pointer(&v))
 	return r
 }
+
 func ToInt64(v interface{}) int64 {
 	var r int64
 	var err error
@@ -82,9 +84,15 @@ func Float64Format(v float64, n int) float64 {
 	v = float64(z) / x
 	return v
 }
+
 func Float32Format(v float32, n int) float32 {
 	x := float32(math.Pow(10, float64(n)))
 	z := int32(v * x)
 	v = float32(z) / x
 	return v
+}
+
+func RandNum(n int) string {
+	num := rand.Int()
+	return strconv.Itoa(num)[:n]
 }

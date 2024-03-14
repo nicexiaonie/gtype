@@ -7,6 +7,7 @@ func StringMapToStringMapString(v map[string]interface{}) map[string]string {
 	}
 	return ret
 }
+
 func StringMapToStringMapInt64(v map[string]interface{}) map[string]int64 {
 	ret := make(map[string]int64)
 	for k, v := range v {
@@ -14,4 +15,3 @@ func StringMapToStringMapInt64(v map[string]interface{}) map[string]int64 {
 	}
 	return ret
 }
-
